@@ -69,10 +69,6 @@ class Settings(QMainWindow):
         self.setGeometry(100, 100, 600, 600)
         # тут будут настройки, описанные в README
 
-
-class Settings(QMainWindow):
-    pass
-
 class New_play(QMainWindow):
     def __init__(self):
         super().__init__()
