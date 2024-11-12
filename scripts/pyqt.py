@@ -76,7 +76,7 @@ class New_play(QMainWindow):
         self.setGeometry(100, 100, 600, 600)
         self.background_widget = QWidget(self)
         self.background_widget.setStyleSheet('''
-            background-image: url(sakura.webp);
+            background-image: url(media/sakura.webp);
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -102,18 +102,18 @@ class ChessBoard(QWidget):
         self.highlighted_squares = []
         self.board = chess.Board()
         self.pieces = {
-            'P': QPixmap('figures/wp.png'),
-            'R': QPixmap('figures/wl.png'),
-            'N': QPixmap('figures/wh.png'),
-            'B': QPixmap('figures/wb.png'),
-            'Q': QPixmap('figures/wq.png'),
-            'K': QPixmap('figures/wk.png'),
-            'p': QPixmap('figures/bp.png'),
-            'r': QPixmap('figures/bl.png'),
-            'n': QPixmap('figures/bh.png'),
-            'b': QPixmap('figures/bb.png'),
-            'q': QPixmap('figures/bq.png'),
-            'k': QPixmap('figures/bk.png')
+            'P': QPixmap('media/figures/wp.png'),
+            'R': QPixmap('media/figures/wl.png'),
+            'N': QPixmap('media/figures/wh.png'),
+            'B': QPixmap('media/figures/wb.png'),
+            'Q': QPixmap('media/figures/wq.png'),
+            'K': QPixmap('media/figures/wk.png'),
+            'p': QPixmap('media/figures/bp.png'),
+            'r': QPixmap('media/figures/bl.png'),
+            'n': QPixmap('media/figures/bh.png'),
+            'b': QPixmap('media/figures/bb.png'),
+            'q': QPixmap('media/figures/bq.png'),
+            'k': QPixmap('media/figures/bk.png')
         }
         self.buttons = {}
         layout = QGridLayout()
