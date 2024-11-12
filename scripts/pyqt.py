@@ -24,7 +24,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(button_settings)
         layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
         central_widget = QWidget()
-        image_path = 'death-note-l-and-light-playing-chess-ft7rtfi086yvefyc.jpg'
+        image_path = 'media/death-note-l-and-light-playing-chess-ft7rtfi086yvefyc.jpg'
         central_widget.setStyleSheet(f'''
             background-image: url({image_path});
             background-position: center;
