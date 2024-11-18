@@ -3,7 +3,7 @@ import sys
 import chess
 import chess.engine
 
-from play.newplay import *
+from play.newplay.py import *
 
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QPainter, QColor, QPixmap, QIcon
@@ -15,7 +15,7 @@ imagemw = 'media/death-note-l-and-light-playing-chess-ft7rtfi086yvefyc.jpg'
 imageplay = 'media/sakura.webp'
 font_size = '17px'
 font = 'Comic Sans MS'
-engine = chess.engine.SimpleEngine.popen_uci("stockfish-windows-x86-64-sse41-popcnt.exe")
+engine = chess.engine.SimpleEngine.popen_uci("scripts/stockfish-windows-x86-64-sse41-popcnt.exe")
 
 
 class MainWindow(QMainWindow):
