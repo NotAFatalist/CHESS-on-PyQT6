@@ -11,11 +11,11 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QGr
 from PyQt6.QtWidgets import QInputDialog
 
 
-imagemw = 'death-note-l-and-light-playing-chess-ft7rtfi086yvefyc.jpg'
-imageplay = 'sakura.webp'
+imagemw = 'media/death-note-l-and-light-playing-chess-ft7rtfi086yvefyc.jpg'
+imageplay = 'media/sakura.webp'
 font_size = '17px'
 font = 'Comic Sans MS'
-engine = chess.engine.SimpleEngine.popen_uci(r"stockfish-windows-x86-64-sse41-popcnt.exe")
+engine = chess.engine.SimpleEngine.popen_uci("scripts/stockfish-windows-x86-64-sse41-popcnt.exe")
 
 class New_play(QMainWindow):
     def __init__(self, vsrobot=False):
