@@ -4,15 +4,14 @@ import chess
 import chess.engine
 
 import json
-
-from play.newplay import *
+from play.newplay import New_play
 
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QPainter, QColor, QPixmap, QIcon
 from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QGridLayout, QPushButton, QFileDialog
 from PyQt6.QtWidgets import QInputDialog
 
-
+sys.path.append("..")
 imagemw = 'media/death-note-l-and-light-playing-chess-ft7rtfi086yvefyc.jpg'
 imageplay = 'media/sakura.webp'
 font_size = '17px'
@@ -78,15 +77,15 @@ class MainWindow(QMainWindow):
             ('Робот', 'Человек'), 1, False)
         if ok_pressed:
             if opponent == 'Человек':
-                mw = New_play(board=chess.Board())
+                mw = New_play(board=chess.Board(), mw=self)
                 mw.show()
-                self.close()
+                self.hide()
             else:
-                mw = New_play(board=chess.Board(), vsrobot=True)
-                self.engine = chess.engine.SimpleEngine.popen_uci("stockfish-windows-x86-64-sse41-popcnt.exe")
+                mw = New_play(board=chess.Board(), vsrobot=True, mw=self)
+                # self.engine = chess.engine.SimpleEngine.popen_uci("stockfish-windows-x86-64-sse41-popcnt.exe")
                 vsrobot = True
                 mw.show()
-                self.close()
+                self.hide()
     def old_play(self):
         self.mw = Old_play()
         self.mw.show()

@@ -4,8 +4,7 @@ import chess.engine
 import sys
 
 import json
-
-from scripts.pyqt import *
+# sys.path.append("..")
 
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QPainter, QColor, QPixmap, QIcon
@@ -19,9 +18,10 @@ font_size = '17px'
 font = 'Comic Sans MS'
 
 class New_play(QMainWindow):
-    def __init__(self, board=chess.Board, vsrobot=False):
+    def __init__(self, board=chess.Board, vsrobot=False, mw=None):
         super().__init__()
         self.board = board
+        self.mw = mw
         self.vsrobot = vsrobot
         self.initUI()
 
@@ -75,13 +75,11 @@ class New_play(QMainWindow):
 
     def back_human(self):
         # self.chess_board.engine.quit()
-        self.mw = MainWindow()
         self.mw.showMaximized()
         self.close()
 
     def back_robot(self):
         self.chess_board.engine.quit()
-        self.mw = MainWindow()
         self.mw.showMaximized()
         self.close()
 
@@ -121,9 +119,9 @@ class ChessBoard(QWidget):
 
     def initUI(self):
         if self.vs_robot:
-            self.engine = chess.engine.SimpleEngine.popen_uci(r"stockfish-windows-x86-64-sse41-popcnt.exe")
+            self.engine = chess.engine.SimpleEngine.popen_uci("stockfish-windows-x86-64-sse41-popcnt.exe")
         self.setWindowTitle('Шахматная доска')
-        self.setFixedSize(800, 640)  # Увеличиваем ширину окна для размещения бокового виджета
+        self.setFixedSize(800, 640)
         self.board_size = 8
         self.selected_square = None
         self.highlighted_squares = []
