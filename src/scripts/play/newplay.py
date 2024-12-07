@@ -2,20 +2,47 @@ import chess
 import chess.engine
 
 import sys
-
+import time
 import json
 # sys.path.append("..")
 
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QPainter, QColor, QPixmap, QIcon
 from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QGridLayout, QPushButton, QFileDialog, QHBoxLayout, QLabel
-from PyQt6.QtWidgets import QInputDialog, QMessageBox, QLineEdit
+from PyQt6.QtWidgets import QInputDialog, QMessageBox, QLineEdit, QDialog
 
 
 imagemw = 'media/death-note-l-and-light-playing-chess-ft7rtfi086yvefyc.jpg'
 imageplay = 'sakura.webp'
 font_size = '17px'
 font = 'Comic Sans MS'
+
+def except_hook(cls, exception, traceback):
+    sys.__excepthook__(cls, exception, traceback)
+
+SCREEN_SIZE = [400, 400]
+
+
+class Example(QMainWindow):
+    def __init__(self, path=None):
+        super().__init__()
+        self.path = path
+        self.initUI()
+
+    def initUI(self):
+        self.setGeometry(400, 400, *SCREEN_SIZE)
+        self.setWindowTitle('Отображение картинки')
+
+        ## Изображение
+        self.pixmap = QPixmap(self.path)
+        # Если картинки нет, то QPixmap будет пустым,
+        # а исключения не будет
+        self.image = QLabel(self)
+        self.image.move(80, 60)
+        self.image.resize(1000, 1000)
+        # Отображаем содержимое QPixmap в объекте QLabel
+        self.image.setPixmap(self.pixmap)
+
 
 class New_play(QMainWindow):
     def __init__(self, board=chess.Board, vsrobot=False, mw=None):
@@ -237,6 +264,7 @@ class ChessBoard(QWidget):
                     button.setStyleSheet('background-color: rgba(0, 255, 0, 255);')
                 else:
                     button.setStyleSheet(self.get_button_color(row, col))
+        self.show_result()
 
     def click_on_button(self):
         button = self.sender()
@@ -286,3 +314,16 @@ class ChessBoard(QWidget):
                 to_row, to_col = divmod(to_square, 8)
                 legal_moves.append((7 - to_row, to_col))
         return legal_moves
+
+    def show_result(self):
+        if self.board.is_checkmate():
+            image_path = 'win.jpg' if self.board.turn else 'lose.jpg'
+        elif self.board.is_stalemate() or self.board.is_insufficient_material() or self.board.is_fivefold_repetition() or self.board.can_claim_draw():
+            image_path = 'draw.png'
+        else:
+            return None
+        ex = Example(path=image_path)
+        start_time = time.time()
+        end_time = start_time + 3
+        while time.time() < end_time:
+            ex.showMaximized()

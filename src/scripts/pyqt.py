@@ -11,6 +11,8 @@ from PyQt6.QtGui import QPainter, QColor, QPixmap, QIcon
 from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QGridLayout, QPushButton, QFileDialog
 from PyQt6.QtWidgets import QInputDialog
 
+
+
 sys.path.append("..")
 imagemw = 'death-note-l-and-light-playing-chess-ft7rtfi086yvefyc.jpg'
 imageplay = 'sakura.webp'
