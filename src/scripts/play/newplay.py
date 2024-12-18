@@ -12,8 +12,8 @@ from PyQt6.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QGr
 from PyQt6.QtWidgets import QInputDialog, QMessageBox, QLineEdit, QDialog
 
 
-imagemw = 'media/death-note-l-and-light-playing-chess-ft7rtfi086yvefyc.jpg'
-imageplay = 'sakura.webp'
+imagemw = 'data/media/death-note-l-and-light-playing-chess-ft7rtfi086yvefyc.jpg'
+imageplay = 'data/media/sakura.webp'
 font_size = '17px'
 font = 'Comic Sans MS'
 
@@ -174,7 +174,7 @@ class Sidebar(QWidget):
         self.setLayout(layout)
 
     def best_move(self):
-        engine = chess.engine.SimpleEngine.popen_uci("stockfish-windows-x86-64-sse41-popcnt.exe")
+        engine = chess.engine.SimpleEngine.popen_uci("src/scripts/stockfish-windows-x86-64-sse41-popcnt.exe")
         result = engine.play(self.parent.board, chess.engine.Limit(time=0.100))
         msg_box = QMessageBox()
         msg_box.setIcon(QMessageBox.Icon.Information)
@@ -197,25 +197,25 @@ class ChessBoard(QWidget):
 
     def initUI(self):
         if self.vs_robot:
-            self.engine = chess.engine.SimpleEngine.popen_uci("stockfish-windows-x86-64-sse41-popcnt.exe")
+            self.engine = chess.engine.SimpleEngine.popen_uci("src/scripts/stockfish-windows-x86-64-sse41-popcnt.exe")
         self.setWindowTitle('Шахматная доска')
         self.setFixedSize(800, 640)
         self.board_size = 8
         self.selected_square = None
         self.highlighted_squares = []
         self.pieces = {
-            'P': QPixmap('wp.png'),
-            'R': QPixmap('wl.png'),
-            'N': QPixmap('wh.png'),
-            'B': QPixmap('wb.png'),
-            'Q': QPixmap('wq.png'),
-            'K': QPixmap('wk.png'),
-            'p': QPixmap('bp.png'),
-            'r': QPixmap('bl.png'),
-            'n': QPixmap('bh.png'),
-            'b': QPixmap('bb.png'),
-            'q': QPixmap('bq.png'),
-            'k': QPixmap('bk.png')
+            'P': QPixmap('data/media/figures/wp.png'),
+            'R': QPixmap('data/media/figures/wl.png'),
+            'N': QPixmap('data/media/figures/wh.png'),
+            'B': QPixmap('data/media/figures/wb.png'),
+            'Q': QPixmap('data/media/figures/wq.png'),
+            'K': QPixmap('data/media/figures/wk.png'),
+            'p': QPixmap('data/media/figures/bp.png'),
+            'r': QPixmap('data/media/figures/bl.png'),
+            'n': QPixmap('data/media/figures/bh.png'),
+            'b': QPixmap('data/media/figures/bb.png'),
+            'q': QPixmap('data/media/figures/bq.png'),
+            'k': QPixmap('data/media/figures/bk.png')
         }
         self.buttons = {}
         board_widget = QWidget()
@@ -317,13 +317,15 @@ class ChessBoard(QWidget):
 
     def show_result(self):
         if self.board.is_checkmate():
-            image_path = 'win.jpg' if self.board.turn else 'lose.jpg'
+            image_path = 'data/media/win.jpg' if self.board.turn else 'data/media/lose.jpg'
         elif self.board.is_stalemate() or self.board.is_insufficient_material() or self.board.is_fivefold_repetition() or self.board.can_claim_draw():
-            image_path = 'draw.png'
+            image_path = 'data/media/draw.png'
         else:
             return None
+        app = QApplication(sys.argv)
         ex = Example(path=image_path)
         start_time = time.time()
         end_time = start_time + 3
         while time.time() < end_time:
             ex.showMaximized()
+        sys.exit(app.exec())

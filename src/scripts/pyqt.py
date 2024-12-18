@@ -14,8 +14,8 @@ from PyQt6.QtWidgets import QInputDialog
 
 
 sys.path.append("..")
-imagemw = 'death-note-l-and-light-playing-chess-ft7rtfi086yvefyc.jpg'
-imageplay = 'sakura.webp'
+imagemw = 'data/media/death-note-l-and-light-playing-chess-ft7rtfi086yvefyc.jpg'
+imageplay = 'data/media/sakura.webp'
 font_size = '17px'
 font = 'Comic Sans MS'
 vsrobot = False
@@ -131,7 +131,7 @@ class Settings(QMainWindow):
         self.setFixedSize(500, 500)
         layout = QVBoxLayout()
         central_widget = QWidget()
-        image_path = 'settings.webp'
+        image_path = 'data/media/settings.webp'
         central_widget.setStyleSheet(f'''
             background-image: url({image_path});
             background-position: center;
